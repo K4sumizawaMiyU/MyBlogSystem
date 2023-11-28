@@ -3,7 +3,7 @@ using MyBlog.Model;
 
 namespace MyBlog.Service;
 
-public class AuthorInfoService:BaseService<AuthorInfo>,IAuthorService
+public class AuthorInfoService:BaseService<AuthorInfo>,IAuthorInfoService
 {
     private readonly IAuthorInfoRepository _iAuthorInfoRep;
     public AuthorInfoService(IAuthorInfoRepository authorInfoRepository)

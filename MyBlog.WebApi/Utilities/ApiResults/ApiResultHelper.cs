@@ -13,16 +13,6 @@ public static class ApiResultHelper
             Data = data
         };
     }
-    
-    public static ApiResult Success(string msg = "success")
-    {
-        return new ApiResult
-        {
-            Code = 200,
-            Msg = msg
-        };
-    }
-    
     public static ApiResult Success(object data,RefAsync<int> total, string msg = "success")
     {
         return new ApiResult
@@ -39,25 +29,18 @@ public static class ApiResultHelper
         return new ApiResult
         {
             Code = 500,
-            Msg = msg
-        };
-    }
-
-    public static ApiResult Error(int code, string msg = "error")
-    {
-        return new ApiResult
-        {
-            Code = code,
-            Msg = msg
+            Msg = msg,
+            Data = null,
+            Total = 0
         };
     }
     public static ApiResult Error(object data,RefAsync<int> total, string msg = "error")
     {
         return new ApiResult
         {
-            Code = 200,
+            Code = 500,
             Msg = msg,
-            Data = data,
+            Data = null,
             Total = 0
         };
     }
