@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登录/注册</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container-login {
+            display: block;
+            width: 400px;
+            padding: 16px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .align-right {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .container-login .align-right #toRegister {
+            background-color: #FFFFFF;
+            cursor: pointer;
+            border: none;
+            text-align: right;
+        }
+
+        .container-login h2 {
+            text-align: center;
+        }
+
+        .container-login form .input-group {
+            margin-bottom: 10px;
+        }
+
+        .container-login form .input-group label {
+            display: block;
+        }
+
+        .container-login form .input-group input {
+            width: 95%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .container-login form .input-group-submit input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .container-login form .input-group-submit input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container-login form .input-group-submit input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .container-register {
+            display: none;
+            width: 400px;
+            padding: 16px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container-register .align-right #toLogin {
+            background-color: #FFFFFF;
+            cursor: pointer;
+            border: none;
+            text-align: right;
+        }
+
+        .container-register h2 {
+            text-align: center;
+        }
+
+        .container-register form .input-group {
+            margin-bottom: 10px;
+        }
+
+        .container-register form .input-group label {
+            display: block;
+        }
+
+        .container-register form .input-group input {
+            width: 95%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .container-register form .input-group-submit input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .container-register form .input-group-submit input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container-register form .input-group-submit input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login" class="container-login">
+        <h2>登录</h2>
+        <form action="/login" method="post">
+            <div class="input-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group-submit">
+                <input type="submit" value="登录">
+            </div>
+        </form>
+        <div class="align-right">
+            <button id="toRegister">没有账号？(っ °Д °;)っ点我注册！(￣y▽,￣)╭ </button>
+        </div>
+    </div>
+    <div id="register" class="container-register">
+        <h2>注册</h2>
+        <form action="/register" method="post">
+            <div class="input-group">
+                <label for="reg_username">昵称</label>
+                <input type="text" id="reg_name" name="name" required>
+            </div>
+            <div class="input-group">
+                <label for="reg_username">用户名</label>
+                <input type="text" id="reg_username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="reg_password">密码</label>
+                <input type="password" id="reg_password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="reg_password">确认密码</label>
+                <input type="password" id="reg_cf_password" name="cf_password" required>
+            </div>
+            <div class="input-group-submit">
+                <input type="submit" value="注册">
+            </div>
+        </form>
+        <div class="align-right">
+            <button id="toLogin">已有账号？(*￣3￣)╭点我登录喵~！(～￣▽￣)～</button>
+        </div>
+    </div>
+    <script>
+        var login = document.getElementById('login');
+        var register = document.getElementById('register');
+        document.getElementById('toRegister').onclick = function () {
+            login.style.opacity = '0';
+            setTimeout(function () {
+                login.style.display = 'none';
+                register.style.display = 'block';
+                setTimeout(function () {
+                    register.style.opacity = '1';
+                }, 50);
+            }, 500);
+        }
+        document.getElementById('toLogin').onclick = function () {
+            register.style.opacity = '0';
+            setTimeout(function () {
+                register.style.display = 'none';
+                login.style.display = 'block';
+                setTimeout(function () {
+                    login.style.opacity = '1';
+                }, 50);
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>

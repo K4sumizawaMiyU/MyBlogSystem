@@ -288,3 +288,5 @@ E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\MyBlog.Service.dll
 E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\MyBlog.IService.pdb
 E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\MyBlog.Service.pdb
 E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\AutoMapper.dll
+E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

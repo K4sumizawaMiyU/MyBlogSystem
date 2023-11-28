@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.Model;
+using MyBlog.Model.DTO;
 using MyBlog.Service;
 using MyBlog.WebApi.Utilities;
 using MyBlog.WebApi.Utilities.ApiResults;
@@ -42,9 +44,7 @@ public class AuthorInfoController : ControllerBase
     public async Task<ActionResult<ApiResult>> ChangeUserName(string name, string username)
     {
         var id = Convert.ToInt32(User.FindFirst("Id")!.Value);
-
-
-        var user = await _authorInfoService.SelectAsync(c => c.UserName == username);
+        var user = await _authorInfoService.SelectAsync(id); 
         user.Name = name;
         var changeBool = await _authorInfoService.EditAsync(user);
         return !changeBool
@@ -53,12 +53,10 @@ public class AuthorInfoController : ControllerBase
     }
 
     [HttpPut("ChangeUserPwd")]
-    public async Task<ActionResult<ApiResult>> ChangeUserPassword(string newPwd, string username)
+    public async Task<ActionResult<ApiResult>> ChangeUserPassword(string newPwd)
     {
         var id = Convert.ToInt32(User.FindFirst("Id")!.Value);
-
-
-        var user = await _authorInfoService.SelectAsync(c => c.UserName == username);
+        var user = await _authorInfoService.SelectAsync(id);
         user.UserPwd = Md5Helper.Md5Encrypt32(newPwd);
         var changeBool = await _authorInfoService.EditAsync(user);
         return !changeBool
@@ -67,13 +65,24 @@ public class AuthorInfoController : ControllerBase
     }
 
     [HttpDelete("DeleteUserAccount")]
-    public async Task<ActionResult<ApiResult>> DeleteUserAccount(string username)
+    public async Task<ActionResult<ApiResult>> DeleteUserAccount()
     {
-        var user = await _authorInfoService.SelectAsync(c => c.UserName == username);
+        var id = Convert.ToInt32(User.FindFirst("Id")!.Value);
+        var user = await _authorInfoService.SelectAsync(id);
         if (user == null) return ApiResultHelper.Error("用户不存在！");
         var deleteBool = await _authorInfoService.DeleteAsync(user.Id);
         return !deleteBool
             ? ApiResultHelper.Error("删除失败，请联系管理员！")
             : ApiResultHelper.Success("删除成功！");
+    }
+    [AllowAnonymous]
+    [HttpGet("FindUser")]
+    public async Task<ActionResult<ApiResult>> FindUser([FromServices]IMapper iMapper,string Name)
+    {
+        var users = await _authorInfoService.QueryAsync(c => c.Name == Name);
+        var userMapperList = users.Select(user => iMapper.Map<AuthorDTO>(user)).ToList();
+        return userMapperList.Count == 0 
+            ? ApiResultHelper.Error("没有找到这样的用户哦")
+            : ApiResultHelper.Success(userMapperList);
     }
 }
