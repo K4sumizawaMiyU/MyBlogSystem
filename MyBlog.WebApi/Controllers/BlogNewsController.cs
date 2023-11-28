@@ -18,12 +18,12 @@ namespace MyBlog.WebApi.Controllers
         public async Task<ActionResult<ApiResult>> GetBlogNews()
         {
             var data = await _blogNewsService.QueryAsync();
-            return data == null ? ApiResultHelper.Error("没有更多了！") : ApiResultHelper.Success(data);
+            return data.Count == 0 ? ApiResultHelper.Error("没有更多了！") : ApiResultHelper.Success(data);
         }
         [HttpGet("GetBlogNews")]
         public async Task<ActionResult<ApiResult>> GetBlogNews(int id)
         {
-            var data = await _blogNewsService.QueryAsync();
+            var data = await _blogNewsService.SelectAsync(id);
             return data == null ? ApiResultHelper.Error("文章不存在呦！") : ApiResultHelper.Success(data);
         }
         [HttpPost("CreateBlogNews")]
@@ -40,15 +40,15 @@ namespace MyBlog.WebApi.Controllers
                 Click = 0,
                 Stars = 0
             };
-            if (!await _blogNewsService.CreateAsync(blogNews)) return ApiResultHelper.Error("创建失败！服务器姐姐睡着了！");
-            return ApiResultHelper.Success(await _blogNewsService.CreateAsync(blogNews)); 
+            var data = await _blogNewsService.CreateAsync(blogNews);
+            return !data ? ApiResultHelper.Error("创建失败！服务器姐姐睡着了！") : ApiResultHelper.Success(await _blogNewsService.CreateAsync(blogNews));
         }
 
         [HttpDelete("DeleteBlogNews")]
         public async Task<ActionResult<ApiResult>> DeleteBlogNews(int id)
         {
-            if(!await _blogNewsService.DeleteAsync(id)) return ApiResultHelper.Success("删除失败！服务器姐姐不让你删！");
-            return ApiResultHelper.Success(await _blogNewsService.DeleteAsync(id));
+            var data = await _blogNewsService.DeleteAsync(id);
+            return !data ? ApiResultHelper.Error("删除失败！服务器姐姐不让你删！") : ApiResultHelper.Success(data);
         }
 
         [HttpPut("EditBlogNews")]
@@ -59,9 +59,8 @@ namespace MyBlog.WebApi.Controllers
             blogNews.Title = title;
             blogNews.Content = content;
             blogNews.TypeId = typeid;
-            return !await _blogNewsService.EditAsync(blogNews)
-                ? ApiResultHelper.Error("修改失败，你应该问问可爱的管理员姐姐")
-                : ApiResultHelper.Success(blogNews);
+            var data = await _blogNewsService.EditAsync(blogNews);
+            return !data ? ApiResultHelper.Error("修改失败，你应该问问可爱的管理员姐姐") : ApiResultHelper.Success(blogNews);
         }
     }
 }

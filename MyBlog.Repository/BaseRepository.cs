@@ -11,13 +11,13 @@ public class BaseRepository<TEntity> : SimpleClient<TEntity>, IBaseRepository<TE
     protected BaseRepository(ISqlSugarClient context = null) : base(context)
     {
         Context = DbScoped.SugarScope;
-        // Context.DbMaintenance.CreateDatabase( "TestDb","TestDb");
-        // Context.CodeFirst
-        //  .InitTables(
-        //      typeof(BlogNews), 
-        //      typeof(TypeInfo),
-        //      typeof(AuthorInfo)
-        //  );
+        Context.DbMaintenance.CreateDatabase( "TestDb","TestDb");
+        Context.CodeFirst
+         .InitTables(
+             typeof(BlogNews), 
+             typeof(TypeInfo),
+             typeof(AuthorInfo)
+         );
     }
     public async Task<bool> CreateAsync(TEntity entity)
     {
