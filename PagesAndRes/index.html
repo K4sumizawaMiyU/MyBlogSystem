@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>(❁´◡`❁)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="CSS/LoginAndRegister.css">
+	<link rel="stylesheet" href="res/layui/css/layui.css">
+	<link rel="stylesheet" href="res/static/css/mian.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3.0.5/dist/vue.global.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        #TestButton {
+            text-align: center;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: azure;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        #TestButton:hover {
+            background-color: #a0a0a0;
+        }
+        #TestLogOut {
+            text-align: center;
+            display: none;
+            background: aqua;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: azure;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        #TestLogOut:hover {
+            background-color: #00a6ff;
+        }
+    </style>
+</head>
+
+<body class="lay-blog" onload="loadPage">
+	<div id="LoginAndRegister" class="main_page">
+		<div id="overlay" class="backGround">
+			<div id="login" class="container-login">
+				<h2>登录</h2>
+				<form>
+					<div class="input-group">
+						<label for="username">用户名</label>
+						<input type="text" id="username" name="username" required>
+					</div>
+					<div class="input-group">
+						<label for="password">密码</label>
+						<input type="password" id="password" name="password" required>
+					</div>
+					<div class="input-group-submit">
+						<input type="submit" id="submit" value="登录">
+					</div>
+				</form>
+				<div class="align-right">
+					<button id="toRegister">没有账号？(っ °Д °;)っ点我注册！(￣y▽,￣)╭ </button>
+				</div>
+			</div>
+			<div id="register" class="container-register">
+				<h2>注册</h2>
+				<form>
+					<div class="input-group">
+						<label for="reg_name">昵称</label>
+						<input type="text" id="reg_name" name="name" required>
+					</div>
+					<div class="input-group">
+						<label for="reg_username">用户名</label>
+						<input type="text" id="reg_username" name="username" required>
+					</div>
+					<div class="input-group">
+						<label for="reg_password">密码</label>
+						<input type="password" id="reg_password" name="password" required>
+					</div>
+					<div class="input-group">
+						<label for="reg_cf_password">确认密码</label>
+						<input type="password" id="reg_cf_password" name="cf_password" required>
+					</div>
+					<div class="input-group-submit">
+						<input type="submit" id="reg_submit" value="注册">
+					</div>
+				</form>
+				<div class="align-right">
+					<button id="toLogin">已有账号？(*￣3￣)╭点我登录喵~！(～￣▽￣)～</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header">
+		<div class="header-wrap">
+			<form class="layui-form blog-seach pull-left" action="">
+				<div class="layui-form-item blog-sewrap">
+					<div class="layui-input-block blog-sebox">
+						<i class="layui-icon layui-icon-search"></i>
+						<input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</form>
+			<div class="blog-nav pull-right">
+				<ul class="layui-nav pull-left">
+					<li class="layui-nav-item layui-this"><a href="index.html">首页</a></li>
+				</ul>
+                <div id="LoginButton" class="main_page">
+                    <input id="TestButton" contenteditable="false" value="登录">
+                </div>
+                <div id="LogoutButton" class="main_page">
+                    <input id="TestLogOut" contenteditable="false" value="">
+                </div>
+			</div>
+			<div class="mobile-nav pull-right" id="mobile-nav">
+				<a href="javascript:;">
+					<i class="layui-icon layui-icon-more"></i>
+				</a>
+			</div>
+		</div>
+		<ul class="pop-nav" id="pop-nav">
+			<li><a href="index.html">首页</a></li>
+		</ul>
+	</div>
+	<div class="container-wrap">
+		<div class="container">
+			<div class="contar-wrap">
+				<div class="item">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<p>
+			<span>&copy; 2023</span>
+			<span>MIT license</span>
+		</p>
+		<p><span>(╯°□°）╯︵ ┻━┻</span></p>
+	</div>
+    <script src="JS/WindowsAnimation.js"></script>
+    <script src="JS/LoginAndRegister.js"></script>
+    <script src="JS/GetContentPage.js"></script>
+</body>
+</html>

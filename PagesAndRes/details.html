@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>评论-闲言轻博客</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="CSS/LoginAndRegister.css">
+	<link rel="stylesheet" href="res/layui/css/layui.css">
+	<link rel="stylesheet" href="res/static/css/mian.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3.0.5/dist/vue.global.js"></script>
+</head>
+<body class="lay-blog">
+		<div class="header">
+			<div class="header-wrap">
+				<form class="layui-form blog-seach pull-left" action="">
+					<div class="layui-form-item blog-sewrap">
+					    <div class="layui-input-block blog-sebox">
+					      <i class="layui-icon layui-icon-search"></i>
+					      <input type="text" name="title" lay-verify="title" autocomplete="off"  class="layui-input">
+					    </div>
+					</div>
+				</form>
+				<div class="blog-nav pull-right">
+					<ul class="layui-nav pull-left">
+					  <li class="layui-nav-item layui-this"><a href="index.html">首页</a></li>
+					</ul>
+					<a href="#" class="personal pull-left">
+						<i class="layui-icon layui-icon-username"></i>
+					</a>
+				</div>
+				<div class="mobile-nav pull-right" id="mobile-nav">
+					<a href="javascript:;">
+						<i class="layui-icon layui-icon-more"></i>
+					</a>
+				</div>
+			</div>
+			<ul class="pop-nav" id="pop-nav">
+				<li><a href="index.html">首页</a></li>
+			</ul>
+		</div>
+		<div class="container-wrap">
+			<div class="container container-message container-details">
+					<div class="contar-wrap">
+						<div class="item">
+						</div>
+					</div>
+			</div>
+		</div>
+		<div class="footer">
+			<p>
+				<span>&copy; 2023</span>
+				<span>MIT license</span>
+			</p>
+		</div>
+</body>
+</html>

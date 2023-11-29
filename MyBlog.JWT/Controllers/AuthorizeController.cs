@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using MyBlog.JWT.Utilities;
@@ -12,6 +13,7 @@ namespace MyBlog.JWT.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("any")]
     public class AuthorizeController : ControllerBase
     {
         private IAuthorInfoService _authorInfoService;
@@ -22,7 +24,7 @@ namespace MyBlog.JWT.Controllers
         [HttpPost("Login")]
         public async Task<ApiResult> Login(string username, string password)
         {
-            var pwd = Md5Helper.Md5Encrypt32(password);
+            var pwd = password; //Md5Helper.Md5Encrypt32(password);
             var user = await _authorInfoService.SelectAsync(c => 
                 c.UserName == username && c.UserPwd == pwd);
             if (user != null)
@@ -46,7 +48,12 @@ namespace MyBlog.JWT.Controllers
                    signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
                 );
                 var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
-                return ApiResultHelper.Success(jwtToken);
+                var authorizeResult = new JwtReturn()
+                {
+                    name = user.Name,
+                    jwtToken = jwtToken
+                };
+                return ApiResultHelper.Success(authorizeResult);
             } 
             else
             {

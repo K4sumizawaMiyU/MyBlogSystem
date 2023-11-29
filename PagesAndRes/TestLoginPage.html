@@ -1,199 +1,111 @@
 <!DOCTYPE html>
-<html>
-
+<meta charset="UTF-8">
+<html lang="">
 <head>
-    <title>登录/注册</title>
+    <title>(*/ω＼*)</title>
+    <link rel="stylesheet" href="CSS/LoginAndRegister.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3.0.5/dist/vue.global.js"></script>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-image: url('Background3.jpeg');
+            background-size: cover;
         }
-
-        .container-login {
-            display: block;
-            width: 400px;
-            padding: 16px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .align-right {
-            margin-top: 10px;
-            text-align: right;
-        }
-
-        .container-login .align-right #toRegister {
-            background-color: #FFFFFF;
-            cursor: pointer;
-            border: none;
-            text-align: right;
-        }
-
-        .container-login h2 {
+        #TestButton {
             text-align: center;
-        }
-
-        .container-login form .input-group {
-            margin-bottom: 10px;
-        }
-
-        .container-login form .input-group label {
-            display: block;
-        }
-
-        .container-login form .input-group input {
-            width: 95%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
-        .container-login form .input-group-submit input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
-        .container-login form .input-group-submit input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: azure;
+            border-radius: 25px;
             cursor: pointer;
         }
-
-        .container-login form .input-group-submit input[type="submit"]:hover {
-            background-color: #45a049;
+        #TestButton:hover {
+            background-color: #a0a0a0;
         }
-
-        .container-register {
+        #TestLogOut {
+            text-align: center;
             display: none;
-            width: 400px;
-            padding: 16px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container-register .align-right #toLogin {
-            background-color: #FFFFFF;
-            cursor: pointer;
-            border: none;
-            text-align: right;
-        }
-
-        .container-register h2 {
-            text-align: center;
-        }
-
-        .container-register form .input-group {
-            margin-bottom: 10px;
-        }
-
-        .container-register form .input-group label {
-            display: block;
-        }
-
-        .container-register form .input-group input {
-            width: 95%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
-        .container-register form .input-group-submit input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
-        .container-register form .input-group-submit input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
+            background: aqua;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: azure;
+            border-radius: 25px;
             cursor: pointer;
         }
-
-        .container-register form .input-group-submit input[type="submit"]:hover {
-            background-color: #45a049;
+        #TestLogOut:hover {
+            background-color: #00a6ff;
         }
     </style>
 </head>
 
 <body>
-    <div id="login" class="container-login">
-        <h2>登录</h2>
-        <form action="/login" method="post">
-            <div class="input-group">
-                <label for="username">用户名</label>
-                <input type="text" id="username" name="username" required>
+    <div id="LoginButton" class="main_page">
+        <input id="TestButton" contenteditable="false" value="登录">
+    </div>
+    <div id="LogoutButton" class="main_page">
+        <input id="TestLogOut" contenteditable="false" value="">
+    </div>
+    <div id="LoginAndRegister" class="main_page">
+        <div id="overlay" class="backGround">
+            <div id="login" class="container-login">
+                <h2>登录</h2>
+                <form>
+                    <div class="input-group">
+                        <label for="username">用户名</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">密码</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="input-group-submit">
+                        <input type="submit" id="submit" value="登录">
+                    </div>
+                </form>
+                <div class="align-right">
+                    <button id="toRegister">没有账号？(っ °Д °;)っ点我注册！(￣y▽,￣)╭ </button>
+                </div>
             </div>
-            <div class="input-group">
-                <label for="password">密码</label>
-                <input type="password" id="password" name="password" required>
+            <div id="register" class="container-register">
+                <h2>注册</h2>
+                <form>
+                    <div class="input-group">
+                        <label for="reg_name">昵称</label>
+                        <input type="text" id="reg_name" name="name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="reg_username">用户名</label>
+                        <input type="text" id="reg_username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="reg_password">密码</label>
+                        <input type="password" id="reg_password" name="password" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="reg_cf_password">确认密码</label>
+                        <input type="password" id="reg_cf_password" name="cf_password" required>
+                    </div>
+                    <div class="input-group-submit">
+                        <input type="submit" id="reg_submit" value="注册">
+                    </div>
+                </form>
+                <div class="align-right">
+                    <button id="toLogin">已有账号？(*￣3￣)╭点我登录喵~！(～￣▽￣)～</button>
+                </div>
             </div>
-            <div class="input-group-submit">
-                <input type="submit" value="登录">
-            </div>
-        </form>
-        <div class="align-right">
-            <button id="toRegister">没有账号？(っ °Д °;)っ点我注册！(￣y▽,￣)╭ </button>
         </div>
     </div>
-    <div id="register" class="container-register">
-        <h2>注册</h2>
-        <form action="/register" method="post">
-            <div class="input-group">
-                <label for="reg_username">昵称</label>
-                <input type="text" id="reg_name" name="name" required>
-            </div>
-            <div class="input-group">
-                <label for="reg_username">用户名</label>
-                <input type="text" id="reg_username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="reg_password">密码</label>
-                <input type="password" id="reg_password" name="password" required>
-            </div>
-            <div class="input-group">
-                <label for="reg_password">确认密码</label>
-                <input type="password" id="reg_cf_password" name="cf_password" required>
-            </div>
-            <div class="input-group-submit">
-                <input type="submit" value="注册">
-            </div>
-        </form>
-        <div class="align-right">
-            <button id="toLogin">已有账号？(*￣3￣)╭点我登录喵~！(～￣▽￣)～</button>
-        </div>
-    </div>
-    <script>
-        var login = document.getElementById('login');
-        var register = document.getElementById('register');
-        document.getElementById('toRegister').onclick = function () {
-            login.style.opacity = '0';
-            setTimeout(function () {
-                login.style.display = 'none';
-                register.style.display = 'block';
-                setTimeout(function () {
-                    register.style.opacity = '1';
-                }, 50);
-            }, 500);
-        }
-        document.getElementById('toLogin').onclick = function () {
-            register.style.opacity = '0';
-            setTimeout(function () {
-                register.style.display = 'none';
-                login.style.display = 'block';
-                setTimeout(function () {
-                    login.style.opacity = '1';
-                }, 50);
-            }, 500);
-        }
-    </script>
+    <script src="JS/WindowsAnimation.js"></script>
+    <script src="JS/LoginAndRegister.js"></script>
 </body>
-
 </html>

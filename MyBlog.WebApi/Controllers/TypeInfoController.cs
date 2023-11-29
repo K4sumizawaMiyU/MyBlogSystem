@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.Model;
 using MyBlog.Service;
@@ -8,7 +9,7 @@ namespace MyBlog.WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[EnableCors("any")]
 public class TypeInfoController : ControllerBase
 {
     private readonly ITypeInfoService _typeInfoService;
@@ -40,7 +41,7 @@ public class TypeInfoController : ControllerBase
             ? ApiResultHelper.Error("修改失败！服务器姐姐睡着了！")
             : ApiResultHelper.Success(type);
     }
-
+    [Authorize]
     [HttpDelete("DeleteType")]
     public async Task<ActionResult<ApiResult>> DeleteType(int id)
     {
@@ -49,7 +50,7 @@ public class TypeInfoController : ControllerBase
             ? ApiResultHelper.Error("删除失败！请检查类型是否存在！")
             : ApiResultHelper.Success(type);
     }
-
+    [Authorize]
     [HttpPut("EditType")]
     public async Task<ActionResult<ApiResult>> EditType(int id, string name)
     {

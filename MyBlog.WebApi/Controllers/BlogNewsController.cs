@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.Model;
 using MyBlog.Model.DTO;
@@ -11,7 +12,7 @@ namespace MyBlog.WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[EnableCors("any")]
 public class BlogNewsController : ControllerBase
 {
     private readonly IBlogNewsService _blogNewsService;

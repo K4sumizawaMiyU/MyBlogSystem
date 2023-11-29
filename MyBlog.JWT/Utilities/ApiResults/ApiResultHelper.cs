@@ -4,6 +4,15 @@ namespace MyBlog.JWT.Utilities.ApiResults;
 
 public static class ApiResultHelper
 {
+    public static ApiResult Success(object data,string name, string msg = "success")
+    {
+        return new ApiResult
+        {
+            Code = 200,
+            Msg = msg,
+            Data = data
+        };
+    }
     public static ApiResult Success(object data, string msg = "success")
     {
         return new ApiResult

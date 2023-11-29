@@ -290,3 +290,5 @@ E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\MyBlog.Service.pdb
 E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\AutoMapper.dll
 E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\Pipelines.Sockets.Unofficial.dll
+E:\InternetApplication\MyBlog\MyBlog.WebApi\bin\Debug\net7.0\StackExchange.Redis.dll

@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.Model;
 using MyBlog.Model.DTO;
@@ -15,7 +12,7 @@ namespace MyBlog.WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[EnableCors("any")]
 public class AuthorInfoController : ControllerBase
 {
     private readonly IAuthorInfoService _authorInfoService;
@@ -39,7 +36,7 @@ public class AuthorInfoController : ControllerBase
         await _authorInfoService.CreateAsync(user);
         return ApiResultHelper.Success("创建成功！");
     }
-
+    [Authorize]
     [HttpPut("ChangeName")]
     public async Task<ActionResult<ApiResult>> ChangeUserName(string name, string username)
     {
@@ -51,7 +48,7 @@ public class AuthorInfoController : ControllerBase
             ? ApiResultHelper.Error("修改失败，请联系管理员获取更多信息。")
             : ApiResultHelper.Success("修改成功！");
     }
-
+    [Authorize]
     [HttpPut("ChangeUserPwd")]
     public async Task<ActionResult<ApiResult>> ChangeUserPassword(string newPwd)
     {
@@ -63,7 +60,7 @@ public class AuthorInfoController : ControllerBase
             ? ApiResultHelper.Error("修改失败，请联系管理员获取更多信息。")
             : ApiResultHelper.Success("修改成功！");
     }
-
+    [Authorize]
     [HttpDelete("DeleteUserAccount")]
     public async Task<ActionResult<ApiResult>> DeleteUserAccount()
     {
@@ -75,6 +72,7 @@ public class AuthorInfoController : ControllerBase
             ? ApiResultHelper.Error("删除失败，请联系管理员！")
             : ApiResultHelper.Success("删除成功！");
     }
+    [Authorize]
     [AllowAnonymous]
     [HttpGet("FindUser")]
     public async Task<ActionResult<ApiResult>> FindUser([FromServices]IMapper iMapper,string Name)
